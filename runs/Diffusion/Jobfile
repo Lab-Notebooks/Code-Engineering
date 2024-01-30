@@ -1,0 +1,5 @@
+job:
+  submit:
+    - diffusion.sh
+  archive:
+    - "job.output*"
