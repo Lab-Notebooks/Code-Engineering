@@ -12,7 +12,9 @@ SiteHome="$PROJECT_HOME/sites/$SiteName"
 source $SiteHome/environment.sh
 
 # Store path to bittree
-export CODELLAMA_HOME="$PROJECT_HOME/software/codellama/CodeLlama"
+export CODELLAMA_HOME="$PROJECT_HOME/software/codellama/Llama"
+
+export MODEL_HOME="$PROJECT_HOME/models"
 
 # Output information to stdout
 echo "---------------------------------------------------------------------------------------"
@@ -23,4 +25,5 @@ echo "SITE_HOME=$SiteHome"
 echo "MPI_HOME=$MPI_HOME"
 echo "NVHPC_HOME=$NVHPC_HOME"
 echo "CODELLAMA_PATH=$CODELLAMA_HOME"
+echo "MODEL_HOME=$MODEL_HOME"
 echo "---------------------------------------------------------------------------------------"
