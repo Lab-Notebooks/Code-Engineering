@@ -5,12 +5,8 @@ module load openmpi-4.1.1
 # Set MPI_HOME by quering path loaded by site module
 export MPI_HOME=$(which mpicc | sed s/'\/bin\/mpicc'//)
 
-# Load HDF5 module in desired configuration if available. If not specified
-# the HDF5 will be built when setting up software
-module load hdf5-1.8.20
+module load nvhpc-nompi/21.3
+#module load nvhpc/21.3
 
-# Path to parallel HDF5 installtion with fortran support
-export HDF5_HOME=$(which h5pfc | sed s/'\/bin\/h5pfc'//)
-
-# Load testing enivronment
-module load flashxtest
+# Set NVHPC_HOME by quering path
+export NVHPC_HOME=$(which nvcc | sed s/'\/bin\/nvcc'//)

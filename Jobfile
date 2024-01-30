@@ -16,11 +16,7 @@
 
 # schedular configuration
 schedular:
-  command: sbatch
-  options:
-    - "#SBATCH --ntasks=10"
-    - "#SBATCH -t 0-30:00"
-    - "#SBATCH --job-name=am-divfree"
+  command: bash
 
 # job configuration
 job:
