@@ -12,5 +12,6 @@ Request License: https://ai.meta.com/resources/models-and-libraries/llama-downlo
 4. Make sure `jobrunner` is in your path.
 5. `jobrunner setup software/codellama -V`
 6. `jobrunner setup models/codellama -V`. Follow instructions to provide license url and download desired models (7b,7b-Instruct,etc...)
-7. `jobrunner submit runs/Example/completions -V`
-8. `jobrunner submit runs/Example/instructions -V`
+8.  Edit `Jobfile` in project root directory to set appropriate schedular commands. 
+9. `jobrunner submit runs/Example/completions -V`
+10. `jobrunner submit runs/Example/instructions -V`
