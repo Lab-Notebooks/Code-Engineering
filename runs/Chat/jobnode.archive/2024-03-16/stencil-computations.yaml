@@ -1,0 +1,77 @@
+Model Configuration:
+  ckpt_path: /gpfs/fs1/home/adhruv/Code-Engineering/models/codellama/CodeLlama-7b-Instruct/jobnode.archive/2024-01-30
+  tokenizer_path: /gpfs/fs1/home/adhruv/Code-Engineering/models/codellama/CodeLlama-7b-Instruct/jobnode.archive/2024-01-30/tokenizer.model
+  temperature: 0.2
+  top_p: 0.95
+  max_seq_len: 2048
+  max_batch_size: 8
+#-------------------------------------------------------------------
+SYSTEM: "Provide answers in code when appropriate"
+USER: "Hello Llama, I want you to help me write FORTRAN code for some specific subroutines involved in stencil-based computation of terms involved in partial differentiation equations."
+ASSISTANT: " Sure, I'd be happy to help! Can you please provide more details about the specific subroutines you need help with, such as the equations they are intended to solve and any constraints or requirements they must satisfy? This will help me better understand how to assist you."
+#-------------------------------------------------------------------
+USER: "Write a subroutine to compute advection using a Fifth-Order WENO scheme."
+ASSISTANT: " Here is an example of a subroutine that computes advection using a Fifth-Order WENO scheme:
+```
+subroutine advection_weno(u, x, t, dt)
+    implicit none
+    real(kind=8), intent(in) :: u(0:,0:,0:)
+    real(kind=8), intent(in) :: x(0:,0:,0:)
+    real(kind=8), intent(in) :: t
+    real(kind=8), intent(in) :: dt
+    real(kind=8) :: u_new(0:,0:,0:)
+    real(kind=8) :: x_new(0:,0:,0:)
+    real(kind=8) :: t_new
+    real(kind=8) :: dt_new
+    integer :: i, j, k
+    integer :: i_min, i_max, j_min, j_max, k_min, k_max
+    real(kind=8) :: dx, dy, dz
+    real(kind=8) :: u_left, u_right, u_center
+    real(kind=8) :: x_left, x_right, x_center
+    real(kind=8) :: t_left, t_right, t_center
+    real(kind=8) :: dt_left, dt_right, dt_center
+    real(kind=8) :: weno_weights(0:,0:,0:)
+    real(kind=8) :: weno_coeffs(0:,0:,0:)
+    real(kind=8) :: weno_interp(0:,0:,0:)
+    real(kind=8) :: weno_diff(0:,0:,0:)
+    real(kind=8) :: weno_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp(0:,0:,0:)
+    real(kind=8) :: weno_lap_diff_interp(0:,0:,0:)
+    real(kind=8) :: weno_lap_grad_interp(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_lap_grad(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_lap_lap(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_lap_lap_diff(0:,0:,0:)
+    real(kind=8) :: weno_lap_interp_diff_grad_lap_lap_lap_lap_lap_lap_lap_lap_"
+#-------------------------------------------------------------------
