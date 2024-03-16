@@ -3,3 +3,4 @@ job:
     - chat.sh
   archive:
     - "job.output*"
+    - "*.yaml"

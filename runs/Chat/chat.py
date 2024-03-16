@@ -4,11 +4,13 @@
 from typing import Optional
 import fire
 from llama import Llama
+import yaml
 
 
 def main(
     ckpt_dir: str,
     tokenizer_path: str,
+    chat_name: str,
     temperature: float = 0.2,
     top_p: float = 0.95,
     max_seq_len: int = 2048,
@@ -23,20 +25,35 @@ def main(
         max_batch_size=max_batch_size,
     )
 
-    instructions = [dict(role="system", content="Provide answers in code when appropriate")]
+    instructions = [
+        dict(role="system", content="Provide answers in code when appropriate")
+    ]
 
     while True:
         prompt = input(f"USER: ")
+
+        if prompt.upper() == "EXIT":
+            break
+
         instructions.append(dict(role="user", content=prompt))
 
         results = generator.chat_completion(
-            [instructions], max_gen_len=max_gen_len, temperature=temperature, top_p=top_p
+            [instructions],
+            max_gen_len=max_gen_len,
+            temperature=temperature,
+            top_p=top_p,
         )
 
         for result in results:
-            print(f"{result['generation']['role'].upper()}: {result['generation']['content']}")
+            print(
+                f"{result['generation']['role'].upper()}: {result['generation']['content']}"
+            )
             print("\n")
-            instructions.append(result['generation'])
+            instructions.append(result["generation"])
+
+    with open(f"{chat_name}.yaml", "w") as outfile:
+        for chat_spec in instructions:
+            outfile.write(f"{chat_spec['role'].upper()}: {chat_spec['content']}\n")
 
 
 if __name__ == "__main__":

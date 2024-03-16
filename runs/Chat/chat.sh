@@ -4,4 +4,5 @@ echo "Model=$Model"
 
 torchrun --nproc_per_node 1 chat.py \
 	--ckpt_dir $Model \
-	--tokenizer_path $Model/tokenizer.model
+	--tokenizer_path $Model/tokenizer.model \
+	--chat_name inital_chat_verification
