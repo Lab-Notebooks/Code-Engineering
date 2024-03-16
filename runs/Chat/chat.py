@@ -23,7 +23,7 @@ def main(
         max_batch_size=max_batch_size,
     )
 
-    instructions = [dict(role="system", content="Provide answers as text")]
+    instructions = [dict(role="system", content="Provide answers in code when appropriate")]
 
     while True:
         prompt = input(f"USER: ")
