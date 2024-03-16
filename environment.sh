@@ -11,8 +11,9 @@ SiteHome="$PROJECT_HOME/sites/$SiteName"
 # Load modules from the site directory
 source $SiteHome/environment.sh
 
-# Store path to bittree
 export CODELLAMA_HOME="$PROJECT_HOME/software/codellama/Llama"
+export LLAMA_CHAT_HOME="$PROJECT_HOME/software/llamachat/Llama-Chat"
+export LLAMA_HOME="$PROJECT_HOME/software/llama/Llama"
 
 export MODEL_HOME="$PROJECT_HOME/models"
 
@@ -26,4 +27,5 @@ echo "MPI_HOME=$MPI_HOME"
 echo "NVHPC_HOME=$NVHPC_HOME"
 echo "CODELLAMA_PATH=$CODELLAMA_HOME"
 echo "MODEL_HOME=$MODEL_HOME"
+echo "LLAMA_CHAT_HOME=$LLAMA_CHAT_HOME"
 echo "---------------------------------------------------------------------------------------"

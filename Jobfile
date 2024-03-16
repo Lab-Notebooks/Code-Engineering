@@ -16,7 +16,7 @@
 
 # schedular configuration
 schedular:
-  command: sbatch
+  command: bash
   options:
     - "#SBATCH --job-name=code-engg"
     - "#SBATCH --account=startup-adhruv"

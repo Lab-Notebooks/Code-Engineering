@@ -5,6 +5,8 @@ __pycache__
 *.ipynb_checkpoints
 config.sh
 software/codellama/Llama
+software/llama/Llama
+software/llamachat/Llama-Chat
 job.target
 job.setup
 job.submit

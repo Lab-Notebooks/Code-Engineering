@@ -1,0 +1,5 @@
+job:
+  submit:
+    - chat.sh
+  archive:
+    - "job.output*"

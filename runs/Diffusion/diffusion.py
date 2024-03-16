@@ -21,7 +21,7 @@ def main(
     tokenizer_path: str,
     temperature: float = 0.2,
     top_p: float = 0.95,
-    max_seq_len: int = 512,
+    max_seq_len: int = 1024,
     max_batch_size: int = 8,
     max_gen_len: Optional[int] = None,
 ):
@@ -40,12 +40,21 @@ def main(
         + "input to the subroutine."
     )
 
+    # variable_diffusion_prompt = (
+    #    "Write a subroutine to numerically compute variable coefficient diffusion "
+    #    + 'term in x-y directions for a variable "phi" on a staggered finite difference '
+    #    + 'mesh. Use "coeff" as a variable to store those coefficients. Assume that "phi" is '
+    #    + 'located on cell-centers, "coeff" located on face-centers, and the result "rhs" '
+    #    + "located on cell-centers."
+    # )
+
     variable_diffusion_prompt = (
-        "Write a subroutine to numerically compute variable coefficient diffusion "
-        + 'term in x-y directions for a variable "phi" on a staggered finite difference '
-        + 'mesh. Use "coeff" as a variable to store those coefficients. Assume that "phi" is '
-        + 'located on cell-centers, "coeff" located on face-centers, and the result "rhs" '
-        + "located on cell-centers."
+        "Write a subroutine to numerically compute diffusion "
+        + 'term with variable diffusivity in x-y directions for a variable "phi" on a staggered finite difference '
+        + 'mesh. Use "coeffx" as a variable for x-face coefficients with spatial bounds (nx+1, ny) and '
+        + '"coeffy" as a variable for y-face coefficients with spatial bounds (nx, ny+1). Assume that "phi" is '
+        + 'located on cell-centers with bounds (nx, ny), The result "rhs" should also be located on cell-centers '
+        + "with bounds (nx, ny). The diffusion term should be consistent with the mathematical expression that computes derivates of variable fluxes."
     )
 
     instructions = []
