@@ -1,0 +1,42 @@
+# CodeLlama2 chat transcript
+
+configuration:
+  ckpt_path: "/gpfs/fs1/home/adhruv/Code-Engineering/models/codellama/CodeLlama-7b-Instruct"
+  tokenizer_path: "/gpfs/fs1/home/adhruv/Code-Engineering/models/codellama/CodeLlama-7b-Instruct/tokenizer.model"
+  temperature: 0.2
+  top_p: 0.95
+  max_seq_len: 2048
+  max_batch_size: 8
+  system: "Provide answers in code when appropriate"
+
+
+prompt-00:
+  user: "Assume a parallel application described by DAG of tasks and a global memory. Each edge carries a data. Each data has a given specified size. For each edge (u,v), the data must be held by the global memory as soon as task u is completed, and until task v starts. The computation of each task requires a specified duration. We want to order the DAG tasks so as to minimize the average memory space usage. Is there similar work present in the literature?"
+  assistant: " Yes, there is similar work present in the literature. This problem is known as the "task scheduling problem" or "data locality problem" in the context of parallel computing. It is a well-studied problem in the field of parallel algorithms and has been extensively researched in the literature.
+
+One approach to solving this problem is to use a technique called "data locality" or "data locality optimization". This involves scheduling tasks in a way that minimizes the amount of data that needs to be transferred between nodes in the parallel system. The idea is to schedule tasks such that the data required by each task is stored in the local memory of the node that is executing the task, rather than having to fetch the data from a remote node.
+
+There are several algorithms and techniques that have been proposed in the literature for solving the task scheduling problem, including:
+
+* Data locality optimization: This involves scheduling tasks in a way that minimizes the amount of data that needs to be transferred between nodes in the parallel system.
+* Task-level parallelism: This involves breaking down a task into smaller sub-tasks that can be executed in parallel, reducing the amount of data that needs to be transferred between nodes.
+* Data partitioning: This involves dividing the data into smaller partitions that can be processed in parallel by different nodes in the parallel system.
+* Load balancing: This involves scheduling tasks such that the load on each node in the parallel system is balanced, reducing the amount of data that needs to be transferred between nodes.
+
+There are also several algorithms and techniques that have been proposed in the literature for solving the task scheduling problem in the context of distributed memory systems, including:
+
+* Distributed memory task scheduling: This involves scheduling tasks in a way that minimizes the amount of data that needs to be transferred between nodes in the parallel system.
+* Distributed memory data locality optimization: This involves scheduling tasks such that the data required by each task is stored in the local memory of the node that is executing the task, rather than having to fetch the data from a remote node.
+* Distributed memory task-level parallelism: This involves breaking down a task into smaller sub-tasks that can be executed in parallel, reducing the amount of data that needs to be transferred between nodes.
+* Distributed memory data partitioning: This involves dividing the data into smaller partitions that can be processed in parallel by different nodes in the parallel system.
+* Distributed memory load balancing: This involves scheduling tasks such that the load on each node in the parallel system is balanced, reducing the amount of data that needs to be transferred between nodes.
+
+There are also several algorithms and techniques that have been proposed in the literature for solving the task scheduling problem in the context of cloud computing, including:
+
+* Cloud task scheduling: This involves scheduling tasks in a way that minimizes the amount of data that needs to be transferred between nodes in the parallel system.
+* Cloud data locality optimization: This involves scheduling tasks such that the data required by each task is stored in the local memory of the node that is executing the task, rather than having to fetch the data from a remote node.
+* Cloud task-level parallelism: This involves breaking down a task into smaller sub-tasks that can be executed in parallel, reducing the amount of data that needs to be transferred between nodes.
+* Cloud data partitioning: This involves dividing the data into smaller partitions that can be processed in parallel by different nodes in the parallel system.
+* Cloud load balancing: This involves scheduling tasks such that the load on each node in the parallel system is balanced, reducing the amount of data that needs to be transferred between nodes.
+
+Overall, the task scheduling problem is a well-studied problem in the field of parallel algorithms and has been extensively researched in the literature. There are several algorithms and techniques that have been proposed in the literature for solving this problem, including data locality optimization, task-level parallelism, data partitioning, load balancing, and others."
