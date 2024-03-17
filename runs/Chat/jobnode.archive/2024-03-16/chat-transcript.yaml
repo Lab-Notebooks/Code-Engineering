@@ -1,0 +1,45 @@
+# CodeLlama2 chat transcript
+
+configuration:
+  ckpt_path: "/gpfs/fs1/home/adhruv/Code-Engineering/models/codellama/CodeLlama-7b-Instruct"
+  tokenizer_path: "/gpfs/fs1/home/adhruv/Code-Engineering/models/codellama/CodeLlama-7b-Instruct/tokenizer.model"
+  temperature: 0.2
+  top_p: 0.95
+  max_seq_len: 2048
+  max_batch_size: 8
+  system: "Provide answers in code when appropriate"
+
+
+prompt-00:
+  user: "Hello"
+  assistant: " Hello! How can I assist you today?"
+
+prompt-01:
+  user: "I am learning about prompt engineering for scientific software development."
+  assistant: " Great! Prompt engineering is a rapidly growing field that involves designing and optimizing natural language prompts for various AI models, including language models, question-answering systems, and text-to-text translation models.
+
+Here are some key concepts and techniques in prompt engineering:
+
+1. Prompt design: This involves creating natural language prompts that are clear, concise, and relevant to the task at hand. The goal is to create prompts that elicit the desired response from the AI model.
+2. Prompt optimization: This involves fine-tuning the prompts to improve their performance on a specific task. This can involve adjusting the wording, adding or removing keywords, or using different sentence structures.
+3. Prompt selection: This involves selecting the most appropriate prompts for a given task. This can involve using pre-defined prompts or creating custom prompts based on the task requirements.
+4. Prompt evaluation: This involves evaluating the performance of the AI model on the prompts. This can involve using metrics such as accuracy, F1 score, or ROUGE score.
+5. Prompt debugging: This involves identifying and fixing errors in the prompts that are causing the AI model to perform poorly. This can involve using techniques such as prompt perturbation or prompt injection.
+
+Some popular tools and techniques in prompt engineering include:
+
+1. Natural Language Toolkit (NLTK): This is a popular Python library for natural language processing tasks, including prompt engineering.
+2. spaCy: This is a modern Python library for natural language processing tasks, including prompt engineering.
+3. Stanford CoreNLP: This is a Java library for natural language processing tasks, including prompt engineering.
+4. Prompt Engineering: This is a Python library for prompt engineering, including prompt design, optimization, selection, evaluation, and debugging.
+5. Hugging Face Transformers: This is a popular Python library for natural language processing tasks, including prompt engineering.
+
+Some real-world applications of prompt engineering include:
+
+1. Chatbots: Prompt engineering can be used to create chatbots that can understand and respond to user queries.
+2. Language translation: Prompt engineering can be used to improve the performance of language translation systems.
+3. Question-answering systems: Prompt engineering can be used to improve the performance of question-answering systems.
+4. Text summarization: Prompt engineering can be used to improve the performance of text summarization systems.
+5. Sentiment analysis: Prompt engineering can be used to improve the performance of sentiment analysis systems.
+
+Overall, prompt engineering is a rapidly growing field that has many exciting applications in natural language processing and AI."

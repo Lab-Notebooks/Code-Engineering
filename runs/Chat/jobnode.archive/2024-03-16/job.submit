@@ -1,3 +1,22 @@
+#!/bin/bash
+
+#SBATCH --job-name=code-engg
+#SBATCH --account=startup-adhruv
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:1
+#SBATCH --time=00:05:00
+
+set -e
+
+export JobWorkDir="/gpfs/fs1/home/adhruv/Code-Engineering/runs/Chat"
+
+cd /gpfs/fs1/home/adhruv/Code-Engineering
+
+# This file is generated using configuration script
+SiteName="swing"
+
+cd /gpfs/fs1/home/adhruv/Code-Engineering
+
 # Bash file to load modules and set environment
 # variables for compilers and external libraries
 
@@ -27,3 +46,13 @@ echo "CODELLAMA_PATH=$CODELLAMA_HOME"
 echo "MODEL_HOME=$MODEL_HOME"
 echo "FLASHX_HOME=$FLASHX_HOME"
 echo "---------------------------------------------------------------------------------------"
+
+cd /gpfs/fs1/home/adhruv/Code-Engineering/runs/Chat
+
+Model=$MODEL_HOME/codellama/CodeLlama-7b-Instruct
+
+echo "Model=$Model"
+
+torchrun --nproc_per_node 1 chat.py \
+	--ckpt_dir $Model \
+	--tokenizer_path $Model/tokenizer.model

@@ -1,0 +1,2 @@
+job:
+  target: translate.py

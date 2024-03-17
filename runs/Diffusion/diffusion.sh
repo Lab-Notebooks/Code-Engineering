@@ -1,4 +1,4 @@
-Model=$MODEL_HOME/codellama/CodeLlama-7b-Instruct/jobnode.archive/2024-01-30
+Model=$MODEL_HOME/codellama/CodeLlama-7b-Instruct
 
 echo "Model=$Model"
 
