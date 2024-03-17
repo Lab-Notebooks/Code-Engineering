@@ -12,7 +12,7 @@ def main(
     tokenizer_path: str,
     temperature: float = 0.2,
     top_p: float = 0.95,
-    max_seq_len: int = 2048,
+    max_seq_len: int = 4096,
     max_batch_size: int = 8,
     max_gen_len: Optional[int] = None,
 ):
