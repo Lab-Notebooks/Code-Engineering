@@ -3,6 +3,6 @@ job:
     - chat.sh
   archive:
     - "job.output*"
-    - "*.yaml"
+    - "*.json"
   clean:
-    - "*.yaml"
+    - "*.json"

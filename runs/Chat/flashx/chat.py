@@ -4,8 +4,9 @@
 from typing import Optional
 import fire
 from llama import Llama
-import yaml
+import json
 import os
+
 
 def main(
     ckpt_dir: str,
@@ -25,19 +26,18 @@ def main(
     )
 
     print(
-        "Welcome to Llama2 research and software assistant for Flash-X. When referencing a source file please use, File: <source/path/to/file>, format."
+        "Welcome to Llama2 research and software assistant for Flash-X. "
+        + "When referencing a source please add at the end of the prompt with keyword, FILE: <source/path/to/file>"
     )
     print("\n")
 
     chat_name = input(f"Chat Transcript Name: ")
     print("\n")
 
-    print("Model Configuration:")
-    print(f"ckpt_path: {ckpt_dir}")
-    print(f"tokenizer_path: {tokenizer_path}")
     print(f"temperature: {temperature}")
     print(f"top_p: {top_p}")
     print(f"max_seq_len: {max_seq_len}")
+    print(f"max_gen_len: {max_gen_len}")
     print(f"max_batch_size: {max_batch_size}")
     print("\n")
 
@@ -50,6 +50,7 @@ def main(
 
         if prompt.upper() == "EXIT":
             break
+
         prompt = prompt.split("FILE:")
 
         if len(prompt) == 1:
@@ -83,33 +84,23 @@ def main(
             print("")
             instructions.append(result["generation"])
 
-    with open(f"{chat_name}.yaml", "w") as outfile:
-
-        outfile.write("# CodeLlama2 chat transcript\n\n")
-        outfile.write("configuration:\n")
-        outfile.write(f'  ckpt_path: "{ckpt_dir}"\n')
-        outfile.write(f'  tokenizer_path: "{tokenizer_path}"\n')
-        outfile.write(f"  temperature: {temperature}\n")
-        outfile.write(f"  top_p: {top_p}\n")
-        outfile.write(f"  max_seq_len: {max_seq_len}\n")
-        outfile.write(f"  max_batch_size: {max_batch_size}\n")
-
-        prompt_id = 0
-
-        for chat_spec in instructions:
-            if chat_spec["role"].upper() == "USER":
-                outfile.write("\n")
-                outfile.write(f"prompt-{str(prompt_id).zfill(2)}:\n")
-                prompt_id = prompt_id + 1
-
-            if chat_spec["role"].upper() == "SYSTEM":
-                outfile.write(
-                    f'  {chat_spec["role"].lower()}: "{chat_spec["content"]}"\n\n'
-                )
-            else:
-                outfile.write(
-                    f'  {chat_spec["role"].lower()}: "{chat_spec["content"]}"\n'
-                )
+    with open(f"{chat_name}.json", "w") as outfile:
+        json.dump(
+            {
+                "configuration": dict(
+                    ckpt_dir=ckpt_dir,
+                    tokenizer_path=tokenizer_path,
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_seq_len=max_seq_len,
+                    max_gen_len=max_gen_len,
+                    max_batch_size=max_batch_size,
+                ),
+                "chat": instructions,
+            },
+            outfile,
+            indent=2,
+        )
 
 
 if __name__ == "__main__":
