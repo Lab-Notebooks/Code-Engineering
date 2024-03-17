@@ -69,22 +69,30 @@ def main(
 
     with open(f"{chat_name}.yaml", "w") as outfile:
 
-        outfile.write("Model Configuration:\n")
-        outfile.write(f"  ckpt_path: {ckpt_dir}\n")
-        outfile.write(f"  tokenizer_path: {tokenizer_path}\n")
+        outfile.write("# CodeLlama2 chat transcript\n\n")
+        outfile.write("configuration:\n")
+        outfile.write(f'  ckpt_path: "{ckpt_dir}"\n')
+        outfile.write(f'  tokenizer_path: "{tokenizer_path}"\n')
         outfile.write(f"  temperature: {temperature}\n")
         outfile.write(f"  top_p: {top_p}\n")
         outfile.write(f"  max_seq_len: {max_seq_len}\n")
         outfile.write(f"  max_batch_size: {max_batch_size}\n")
-        outfile.write(
-            "#-------------------------------------------------------------------\n"
-        )
+
+        prompt_id = 0
 
         for chat_spec in instructions:
-            outfile.write(f'{chat_spec["role"].upper()}: "{chat_spec["content"]}"\n')
-            if chat_spec["role"].upper() == "ASSISTANT":
+            if chat_spec["role"].upper() == "USER":
+                outfile.write("\n")
+                outfile.write(f"prompt-{str(prompt_id).zfill(2)}:\n")
+                prompt_id = prompt_id + 1
+
+            if chat_spec["role"].upper() == "SYSTEM":
                 outfile.write(
-                    "#-------------------------------------------------------------------\n"
+                    f'  {chat_spec["role"].lower()}: "{chat_spec["content"]}"\n\n'
+                )
+            else:
+                outfile.write(
+                    f'  {chat_spec["role"].lower()}: "{chat_spec["content"]}"\n'
                 )
 
 

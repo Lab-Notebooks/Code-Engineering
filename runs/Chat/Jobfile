@@ -4,3 +4,5 @@ job:
   archive:
     - "job.output*"
     - "*.yaml"
+  clean:
+    - "*.yaml"
