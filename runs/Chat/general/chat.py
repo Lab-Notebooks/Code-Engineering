@@ -6,6 +6,21 @@ import fire
 from llama import Llama
 import json
 
+from types import SimpleNamespace
+
+Color = SimpleNamespace(
+    purple="\033[95m",
+    cyan="\033[96m",
+    darkcyan="\033[36m",
+    blue="\033[94m",
+    green="\033[92m",
+    yellow="\033[93m",
+    red="\033[91m",
+    bold="\033[1m",
+    underline="\033[4m",
+    end="\033[0m",
+)
+
 
 def main(
     ckpt_dir: str,
@@ -25,18 +40,18 @@ def main(
     )
 
     print(
-        "Welcome to a simple chat interface for Llama2 model for software engineering applications"
+        f"{Color.red}Welcome to a simple chat interface for Llama2 model for software engineering applications{Color.end}"
     )
     print("\n")
 
-    chat_name = input(f"Chat Transcript Name: ")
+    chat_name = input(f"{Color.red}Transcript-Name:{Color.end} ")
     print("\n")
 
-    print(f"temperature: {temperature}")
-    print(f"top_p: {top_p}")
-    print(f"max_seq_len: {max_seq_len}")
-    print(f"max_gen_len: {max_gen_len}")
-    print(f"max_batch_size: {max_batch_size}")
+    print(f"{Color.red}temperature:{Color.end} {temperature}")
+    print(f"{Color.red}top_p:{Color.end} {top_p}")
+    print(f"{Color.red}max_seq_len:{Color.end} {max_seq_len}")
+    print(f"{Color.red}max_gen_len:{Color.end} {max_gen_len}")
+    print(f"{Color.red}max_batch_size:{Color.end} {max_batch_size}")
     print("\n")
 
     instructions = [
@@ -44,7 +59,7 @@ def main(
     ]
 
     while True:
-        prompt = input(f"USER: ")
+        prompt = input(f"{Color.red}USER:{Color.end} ")
 
         if prompt.upper() == "EXIT":
             break
@@ -60,7 +75,7 @@ def main(
 
         for result in results:
             print(
-                f"{result['generation']['role'].upper()}: {result['generation']['content']}"
+                f"{Color.red}{result['generation']['role'].upper()}:{Color.end} {result['generation']['content']}"
             )
             print("")
             instructions.append(result["generation"])
