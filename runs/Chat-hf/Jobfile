@@ -1,0 +1,9 @@
+job:
+  target: chat.py
+  submit:
+    - chat.sh
+  archive:
+    - "job.output*"
+    - "*.json"
+  clean:
+    - "*.json"

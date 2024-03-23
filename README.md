@@ -15,3 +15,6 @@ Request License: https://ai.meta.com/resources/models-and-libraries/llama-downlo
 8.  Edit `Jobfile` in project root directory to set appropriate schedular commands. 
 9. `jobrunner submit runs/Example/completions -V`
 10. `jobrunner submit runs/Example/instructions -V`
+
+### Hugging face
+1. huggingface-cli login --token <huggingface-token>
