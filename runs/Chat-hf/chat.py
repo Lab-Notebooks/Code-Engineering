@@ -30,7 +30,9 @@ def main(
 ):
 
     choice = input(
-        f"{Color.darkcyan}Welcome to a simple AI powered chat that uses the transformers API to test different models.\n\t1. Mistral-7B-Instruct\n\t2. Codellama-7B-Instruct\nSelect the model you would like to interact with: "
+        f"{Color.darkcyan}Welcome to a simple AI powered chat that uses the transformers API "+
+        f"to test different models.\n\t1. mistral-7b\n\t2. codellama-7b\n\t3. gemma-7b\nSelect "+
+        f"the model you would like to interact with: "
     )
 
     print(f"{Color.end}")
@@ -41,6 +43,10 @@ def main(
         ckpt_dir = (
             os.getenv("MODEL_HOME") + os.sep + "codellama/CodeLlama-7b-Instruct-hf"
         )
+    elif int(choice) == 3:
+        ckpt_dir = (
+            os.getenv("MODEL_HOME") + os.sep + "google/gemma-7b-it"
+        )    
     else:
         raise ValueError(f"Option {choice} not defined")
 
@@ -80,7 +86,8 @@ def main(
 
         for result in results:
             print(
-                f"{Color.blue}{result['generated_text'][-1]['role'].upper()}: {result['generated_text'][-1]['content']}{Color.end}"
+                f"{Color.blue}{result['generated_text'][-1]['role'].upper()}: "+
+                f"{result['generated_text'][-1]['content']}{Color.end}"
             )
             print("")
             instructions.append(result["generated_text"][-1])
